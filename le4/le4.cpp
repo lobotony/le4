@@ -48,4 +48,26 @@ void leLog(const char* file, int line, const char* func, ...) {
     LELOG("frees: %d", numFree);
   }
 
+  Data* Data::init(const u8* inBytes, u32 inSize) {
+    memset(this, 0, sizeof(Data));
+    if(inSize > 0) {
+      bytes = (u8*)leMalloc(inSize);
+      if(bytes) {
+        memcpy(bytes, inBytes, inSize);
+      }
+      size = inSize;
+    }
+    else {
+      bytes = NULL;
+      size = 0;
+    }
+    return this;
+  }
+
+  void Data::deinit() {
+    if(bytes) {
+      leFree(bytes);
+    }
+    memset(this, 0, sizeof(Data));
+  }
 }

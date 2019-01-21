@@ -74,4 +74,14 @@ namespace le4 {
   void leFree(void* ptr);
   void leMemDumpLog();
 
+#pragma mark - Data -
+
+  struct Data {
+    u8* bytes;
+    u32 size;
+
+    Data* init(const u8* bytes, u32 size);
+    void deinit();
+  };
+
 }
