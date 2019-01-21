@@ -33,7 +33,7 @@ namespace le4 {
 
 #pragma mark - Assert -
 
-#define LEASSERT(cond) { int LOST_ASSERT_COND = (int)(cond); if(!LOST_ASSERT_COND) {LELOG("%s", #cond); abort();} }
+#define LEASSERT(cond) { s64 LOST_ASSERT_COND = (s64)(cond); if(!LOST_ASSERT_COND) {LELOG("%s", #cond); abort();} }
 #define LEASSERTM(cond, ...) { int LOST_ASSERT_COND = (int)(cond); if(!LOST_ASSERT_COND) {LELOG(__VA_ARGS__); abort();} }
 
   // assert without abort
@@ -83,5 +83,12 @@ namespace le4 {
     Data* init(const u8* bytes, u32 size);
     void deinit();
   };
+
+#pragma mark - File -
+
+  Data fileLoad(const char* spath);
+  Data fileLoadResource(const char* relativeFilePath);
+  void fileSave(const char* path, Data data);
+  void fileSaveResource(const char* relativeFilePath, Data data);
 
 }
