@@ -52,7 +52,7 @@ void leLog(const char* file, int line, const char* func, ...) {
     memset(this, 0, sizeof(Data));
     if(inSize > 0) {
       bytes = (u8*)leMalloc(inSize);
-      if(bytes) {
+      if(inBytes) {
         memcpy(bytes, inBytes, inSize);
       }
       size = inSize;

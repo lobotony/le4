@@ -10,6 +10,7 @@
 		3584BAB421F369F300906C37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3584BAB321F369F300906C37 /* Assets.xcassets */; };
 		3584BABA21F369F300906C37 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3584BAB921F369F300906C37 /* main.cpp */; };
 		35B027F421F6769600C9A7E3 /* le4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35B027F321F6769600C9A7E3 /* le4.cpp */; };
+		35B027F621F681F400C9A7E3 /* resources in Resources */ = {isa = PBXBuildFile; fileRef = 35B027F521F681F400C9A7E3 /* resources */; };
 		35C372B721F36A87008128BD /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C372B621F36A87008128BD /* SDL2.framework */; };
 		35C372BA21F36B61008128BD /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 35C372B921F36B61008128BD /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -34,6 +35,7 @@
 		3584BAB921F369F300906C37 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		35B027F221F6769600C9A7E3 /* le4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = le4.h; sourceTree = "<group>"; };
 		35B027F321F6769600C9A7E3 /* le4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = le4.cpp; sourceTree = "<group>"; };
+		35B027F521F681F400C9A7E3 /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = "<group>"; };
 		35C372B621F36A87008128BD /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = thirdparty/SDL2.framework; sourceTree = "<group>"; };
 		35C372B921F36B61008128BD /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = thirdparty/SDL2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,6 +55,7 @@
 		3584BAA421F369F200906C37 = {
 			isa = PBXGroup;
 			children = (
+				35B027F521F681F400C9A7E3 /* resources */,
 				35C372B921F36B61008128BD /* SDL2.framework */,
 				3584BAAF21F369F200906C37 /* le4 */,
 				3584BAAE21F369F200906C37 /* Products */,
@@ -146,6 +149,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B027F621F681F400C9A7E3 /* resources in Resources */,
 				3584BAB421F369F300906C37 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

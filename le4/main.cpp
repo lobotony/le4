@@ -13,6 +13,10 @@ int main(int argc, const char * argv[])
   LELOG("yay")
   d2.deinit();
 
+  le4::Data d3 = le4::fileLoadResource("resources/testbutton.png");
+  LELOG("loaded %ld bytes", d3.size);
+  d3.deinit();
+
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
     LELOG("Failed to initialise SDL");
     return -1;
