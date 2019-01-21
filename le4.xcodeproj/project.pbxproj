@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3584BAB421F369F300906C37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3584BAB321F369F300906C37 /* Assets.xcassets */; };
 		3584BABA21F369F300906C37 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3584BAB921F369F300906C37 /* main.cpp */; };
+		35B027F421F6769600C9A7E3 /* le4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35B027F321F6769600C9A7E3 /* le4.cpp */; };
 		35C372B721F36A87008128BD /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C372B621F36A87008128BD /* SDL2.framework */; };
 		35C372BA21F36B61008128BD /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 35C372B921F36B61008128BD /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -31,6 +32,8 @@
 		3584BAB321F369F300906C37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3584BAB821F369F300906C37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3584BAB921F369F300906C37 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		35B027F221F6769600C9A7E3 /* le4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = le4.h; sourceTree = "<group>"; };
+		35B027F321F6769600C9A7E3 /* le4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = le4.cpp; sourceTree = "<group>"; };
 		35C372B621F36A87008128BD /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = thirdparty/SDL2.framework; sourceTree = "<group>"; };
 		35C372B921F36B61008128BD /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = thirdparty/SDL2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +73,8 @@
 			children = (
 				3584BAB321F369F300906C37 /* Assets.xcassets */,
 				3584BAB821F369F300906C37 /* Info.plist */,
+				35B027F321F6769600C9A7E3 /* le4.cpp */,
+				35B027F221F6769600C9A7E3 /* le4.h */,
 				3584BAB921F369F300906C37 /* main.cpp */,
 			);
 			path = le4;
@@ -153,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3584BABA21F369F300906C37 /* main.cpp in Sources */,
+				35B027F421F6769600C9A7E3 /* le4.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
