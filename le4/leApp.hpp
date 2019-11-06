@@ -8,7 +8,11 @@ struct leApp {
     SDL_GLContext   glContext;
     SDL_Window*     window;
 
-    void run();
+    void run(const char* windowName,
+             u16 windowWidth,
+             u16 windowHeight,
+             const char* prefsOrg,
+             const char* prefsProduct);
 
     void startup();
     void update();
