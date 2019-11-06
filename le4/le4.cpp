@@ -3,7 +3,7 @@
 namespace le4 {
 
   void leLog(const char* file, int line, const char* func, ...) {
-    const char* filename = strrchr(file, '/');
+    const char* filename = SDL_strrchr(file, '/');
     if(!filename) {
       filename = file;
     }
@@ -49,11 +49,11 @@ namespace le4 {
   }
 
   Data* Data::init(const u8* inBytes, u32 inSize) {
-    memset(this, 0, sizeof(Data));
+    SDL_memset(this, 0, sizeof(Data));
     if(inSize > 0) {
       bytes = (u8*)leMalloc(inSize);
       if(inBytes) {
-        memcpy(bytes, inBytes, inSize);
+        SDL_memcpy(bytes, inBytes, inSize);
       }
       size = inSize;
     }
@@ -68,7 +68,7 @@ namespace le4 {
     if(bytes) {
       leFree(bytes);
     }
-    memset(this, 0, sizeof(Data));
+    SDL_memset(this, 0, sizeof(Data));
   }
 
   static const char* sep="/";
@@ -77,9 +77,9 @@ namespace le4 {
     LEASSERT(l);
     LEASSERT(r);
 
-    size_t lsz = strlen(l);
-    size_t rsz = strlen(r);
-    size_t sepsz = strlen(sep);
+    size_t lsz = SDL_strlen(l);
+    size_t rsz = SDL_strlen(r);
+    size_t sepsz = SDL_strlen(sep);
     size_t sz = lsz + rsz + sepsz+1;
 
     char* result = (char*)leMalloc(sz);
@@ -106,7 +106,7 @@ namespace le4 {
     const char* respath = resPath();
     size_t pathlen = strlen(respath);
     const char* logpath = path;
-    if(!strncmp(respath, path, pathlen))
+    if(!SDL_strncmp(respath, path, pathlen))
     {
       logpath = path+pathlen+1;
     }
