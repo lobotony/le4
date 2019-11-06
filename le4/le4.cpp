@@ -2,26 +2,26 @@
 
 namespace le4 {
 
-void leLog(const char* file, int line, const char* func, ...) {
-  const char* filename = strrchr(file, '/');
-  if(!filename) {
-    filename = file;
+  void leLog(const char* file, int line, const char* func, ...) {
+    const char* filename = strrchr(file, '/');
+    if(!filename) {
+      filename = file;
+    }
+    else {
+      filename++;
+    }
+
+    va_list va;
+
+    va_start(va, func);
+    const char* fmt = va_arg(va, const char*);
+
+    char* logmsg;
+    vasprintf(&logmsg, fmt, va);
+    printf("%8d - %s : %d : %s : %s\n", SDL_GetTicks(), filename, line, func, logmsg);
+    free(logmsg);
+    va_end(va);
   }
-  else {
-    filename++;
-  }
-
-  va_list va;
-
-  va_start(va, func);
-  const char* fmt = va_arg(va, const char*);
-
-  char* logmsg;
-  vasprintf(&logmsg, fmt, va);
-  printf("%8d - %s : %d : %s : %s\n", SDL_GetTicks(), filename, line, func, logmsg);
-  free(logmsg);
-  va_end(va);
-}
 
   static u32 numMalloc = 0;
   static u32 numRealloc = 0;

@@ -3,28 +3,29 @@
 #include "le4.h"
 
 using std::cout;
+using namespace le4;
 int main(int argc, const char * argv[])
 {
-  void* d = le4::leMalloc(4096);
-  le4::leFree(d);
-
-  le4::Data d2;
-  d2.init((le4::u8*)&d2, 4);
-  LELOG("yay")
-  d2.deinit();
-
-  le4::Data d3 = le4::fileLoadResource("resources/testbutton.png");
-  LELOG("loaded %ld bytes", d3.size);
-  d3.deinit();
-
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
     LELOG("Failed to initialise SDL");
     return -1;
   }
   LELOG("Hooray it works!\n");
 
-  le4::leMemDumpLog();
+  void* d = leMalloc(4096);
+  leFree(d);
 
+  Data d2;
+  d2.init((u8*)&d2, 4);
+  LELOG("yay")
+  d2.deinit();
+
+  Data d3 = fileLoadResource("resources/testbutton.png");
+  LELOG("loaded %ld bytes", d3.size);
+  d3.deinit();
+
+
+  leMemDumpLog();
 
   SDL_Quit();
   return 0;
