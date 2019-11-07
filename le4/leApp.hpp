@@ -4,7 +4,7 @@
 
 namespace le4 {
 
-struct leApp {
+struct App {
     SDL_GLContext   glContext;
     SDL_Window*     window;
 

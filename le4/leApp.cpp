@@ -2,7 +2,7 @@
 
 namespace le4 {
 
-void leApp::run(const char* windowName, u16 windowWidth, u16 windowHeight, const char* prefsOrg, const char* prefsProduct) {
+void App::run(const char* windowName, u16 windowWidth, u16 windowHeight, const char* prefsOrg, const char* prefsProduct) {
 
     SDL_version version;
     SDL_GetVersion(&version);
@@ -42,7 +42,7 @@ void leApp::run(const char* windowName, u16 windowWidth, u16 windowHeight, const
 }
 
 
-void leApp::startup() {
+void App::startup() {
     void* d = leMalloc(4096);
     leFree(d);
 
@@ -56,11 +56,11 @@ void leApp::startup() {
     d3.deinit();
 }
 
-void leApp::update() {
+void App::update() {
 
 }
 
-void leApp::shutdown() {
+void App::shutdown() {
 }
 
 }
