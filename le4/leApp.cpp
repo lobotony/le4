@@ -35,6 +35,60 @@ void App::run(const char* windowName, u16 windowWidth, u16 windowHeight, const c
     int w, h;
     SDL_GL_GetDrawableSize(window, &w, &h);
     LELOG("drawable size: %d %d", w, h);
+    windowSize = vec2(w, h);
+    dt = 0;
+    tnow = SDL_GetTicks();
+    tprev = tnow;
+
+/*    leZoneInit(&app->temp, 1024*1024);
+    le2DRendererInit(&app->r2d, &app->windowSize);
+    leGuiInit(&app->gui, &app->r2d);
+    leInputInit();
+    leAudioInit(&app->audio);
+    leAppStartup(app);*/
+
+    SDL_Event e;
+    running = true;
+    while(running) {
+        tnow = SDL_GetTicks();
+        dt = ((f32)(tnow - tprev))/1000.0f;
+
+        while(SDL_PollEvent(&e))
+        {
+          switch(e.type)
+          {
+            case SDL_QUIT:running = false;break;
+            //case SDL_MOUSEMOTION:leInputMouseMoved(e.motion.x, e.motion.y);break;
+            //case SDL_MOUSEBUTTONDOWN:leInputMouseDown(e.button.button, e.button.x, e.button.y);break;
+            //case SDL_MOUSEBUTTONUP:leInputMouseUp(e.button.button, e.button.x, e.button.y);break;
+            //case SDL_KEYDOWN:leInputKeyDown(e.key.keysym.sym);break;
+            //case SDL_KEYUP:leInputKeyUp(e.key.keysym.sym);break;
+            //case SDL_DROPFILE:leInputAddDropPath(e.drop.file);break;
+            case SDL_WINDOWEVENT:
+              switch(e.window.event)
+              {
+                case SDL_WINDOWEVENT_RESIZED:
+                  LELOG("resized to %d %d", e.window.data1, e.window.data2);
+                  windowSize.x = e.window.data1;
+                  windowSize.y = e.window.data2;
+                  break;
+              }
+              break;
+           }
+        }
+        update();
+        //leAudioUpdate(&app->audio);
+        //leInputReset();
+        SDL_GL_SwapWindow(window);
+        tprev = tnow;
+        //leZoneFree(&app->temp);
+    }
+    shutdown();
+    //leAudioDeinit(&app->audio);
+    //leGuiDeinit(&app->gui);
+    //le2DRendererDeinit(&app->r2d);
+    SDL_free(prefsPath);
+    // nothing to deinit for input
 
     leMemDumpLog();
     LELOG("stopped");
@@ -43,7 +97,7 @@ void App::run(const char* windowName, u16 windowWidth, u16 windowHeight, const c
 
 
 void App::startup() {
-    void* d = leMalloc(4096);
+/*    void* d = leMalloc(4096);
     leFree(d);
 
     Data d2;
@@ -53,7 +107,7 @@ void App::startup() {
 
     Data d3 = fileLoadResource("resources/testbutton.png");
     LELOG("loaded %ld bytes", d3.size);
-    d3.deinit();
+    d3.deinit(); */
 }
 
 void App::update() {
