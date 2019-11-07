@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		356EEFBB2374D54300594D2A /* le4Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 356EEFBA2374D54300594D2A /* le4Tests.m */; };
 		3584BAB421F369F300906C37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3584BAB321F369F300906C37 /* Assets.xcassets */; };
 		3584BABA21F369F300906C37 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3584BAB921F369F300906C37 /* main.cpp */; };
 		35B027F421F6769600C9A7E3 /* le4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35B027F321F6769600C9A7E3 /* le4.cpp */; };
@@ -15,6 +16,16 @@
 		35C372BA21F36B61008128BD /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 35C372B921F36B61008128BD /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35D7E4222373838D00A85529 /* leApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35D7E4202373838D00A85529 /* leApp.cpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		356EEFBD2374D54300594D2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3584BAA521F369F200906C37 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3584BAAC21F369F200906C37;
+			remoteInfo = le4;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		35C372B821F36B4B008128BD /* CopyFiles */ = {
@@ -30,6 +41,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		356EEFB82374D54300594D2A /* le4Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = le4Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		356EEFBA2374D54300594D2A /* le4Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = le4Tests.m; sourceTree = "<group>"; };
+		356EEFBC2374D54300594D2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3584BAAD21F369F200906C37 /* le4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = le4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3584BAB321F369F300906C37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3584BAB821F369F300906C37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -44,6 +58,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		356EEFB52374D54300594D2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3584BAAA21F369F200906C37 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -55,12 +76,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		356EEFB92374D54300594D2A /* le4Tests */ = {
+			isa = PBXGroup;
+			children = (
+				356EEFBA2374D54300594D2A /* le4Tests.m */,
+				356EEFBC2374D54300594D2A /* Info.plist */,
+			);
+			path = le4Tests;
+			sourceTree = "<group>";
+		};
 		3584BAA421F369F200906C37 = {
 			isa = PBXGroup;
 			children = (
 				35B027F521F681F400C9A7E3 /* resources */,
 				35C372B921F36B61008128BD /* SDL2.framework */,
 				3584BAAF21F369F200906C37 /* le4 */,
+				356EEFB92374D54300594D2A /* le4Tests */,
 				3584BAAE21F369F200906C37 /* Products */,
 				35C372B521F36A87008128BD /* Frameworks */,
 			);
@@ -70,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				3584BAAD21F369F200906C37 /* le4.app */,
+				356EEFB82374D54300594D2A /* le4Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +131,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		356EEFB72374D54300594D2A /* le4Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 356EEFC12374D54300594D2A /* Build configuration list for PBXNativeTarget "le4Tests" */;
+			buildPhases = (
+				356EEFB42374D54300594D2A /* Sources */,
+				356EEFB52374D54300594D2A /* Frameworks */,
+				356EEFB62374D54300594D2A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				356EEFBE2374D54300594D2A /* PBXTargetDependency */,
+			);
+			name = le4Tests;
+			productName = le4Tests;
+			productReference = 356EEFB82374D54300594D2A /* le4Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3584BAAC21F369F200906C37 /* le4 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3584BABE21F369F300906C37 /* Build configuration list for PBXNativeTarget "le4" */;
@@ -126,6 +176,9 @@
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Tony Kostanjsek";
 				TargetAttributes = {
+					356EEFB72374D54300594D2A = {
+						CreatedOnToolsVersion = 11.0;
+					};
 					3584BAAC21F369F200906C37 = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -145,11 +198,19 @@
 			projectRoot = "";
 			targets = (
 				3584BAAC21F369F200906C37 /* le4 */,
+				356EEFB72374D54300594D2A /* le4Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		356EEFB62374D54300594D2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3584BAAB21F369F200906C37 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -162,6 +223,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		356EEFB42374D54300594D2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				356EEFBB2374D54300594D2A /* le4Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3584BAA921F369F200906C37 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -174,7 +243,49 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		356EEFBE2374D54300594D2A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3584BAAC21F369F200906C37 /* le4 */;
+			targetProxy = 356EEFBD2374D54300594D2A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		356EEFBF2374D54300594D2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = le4Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lobotony.le4Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		356EEFC02374D54300594D2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = le4Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lobotony.le4Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		3584BABC21F369F300906C37 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -333,6 +444,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		356EEFC12374D54300594D2A /* Build configuration list for PBXNativeTarget "le4Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				356EEFBF2374D54300594D2A /* Debug */,
+				356EEFC02374D54300594D2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3584BAA821F369F200906C37 /* Build configuration list for PBXProject "le4" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
