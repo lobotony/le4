@@ -91,4 +91,18 @@ namespace le4 {
   void fileSave(const char* path, Data data);
   void fileSaveResource(const char* relativeFilePath, Data data);
 
+#pragma mark - vec2 -
+
+struct vec2 {
+    union {
+        struct { f32 data[2]; };
+        struct { f32 x; f32 y; };
+    };
+
+    vec2() { x= 0; y = 0; }
+    vec2(f32 inX, f32 inY) { x = inX; y = inY; }
+    vec2 scale(f32 s) { return vec2(s*x, s*y); }
+};
+
 }
+
