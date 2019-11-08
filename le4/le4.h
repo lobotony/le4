@@ -45,7 +45,7 @@ namespace le4 {
 #define LE_RAD2DEG_F (360.f/(2.f*M_PI))
 
   // calculate the next value that is >= inVal and also a power of two
-  static inline u32 leNextPowerOf2(u32 inVal) {
+  inline u32 nextPowerOf2(u32 inVal) {
     u32 result = 1;
 
     while(result < inVal) {
@@ -55,17 +55,28 @@ namespace le4 {
     return result;
   }
 
-  static inline f32 leClamp(f32 val, f32 lower, f32 upper) {
+  inline f32 clamp(f32 val, f32 lower, f32 upper) {
     return fminf(fmaxf(lower, val), upper);
   }
 
-  static inline f32 leClamp01(f32 v) {
-    return leClamp(v, 0.f, 1.f);
+  inline f32 clamp01(f32 v) {
+    return clamp(v, 0.f, 1.f);
   }
 
 #pragma mark - Hash -
 
-  u32 hashDjb2(const char* data);
+inline u32 hashDjb2(const char* data) {
+    u32 hash = 5381;
+    s32 c;
+
+    const unsigned char* str = (const unsigned char*)data;
+    while ((c = *str++))
+    {
+        hash = ((hash << 5) + hash) + (u32)c;
+    }
+
+    return hash;
+}
 
 #pragma mark - Memory -
 
@@ -110,14 +121,14 @@ struct vec2 {
 
     vec2() { x= 0; y = 0; }
     vec2(f32 inX, f32 inY) { x = inX; y = inY; }
-    vec2 scale(f32 s) const { return vec2(s*x, s*y); }
-    vec2 add(const vec2& r) const { return vec2(x+r.x, y+r.y); }
-    vec2 sub(const vec2& r) const { return vec2(x-r.x, y-r.y); }
-    f32 sqMag() const { return x*x + y*y; }
-    f32 mag() const { return sqrtf(sqMag()); }
-    vec2 normalize() const { return scale(1.f/mag()); }
-    f32 distance(const vec2& r) const { return r.sub(*this).mag(); }
-    f32 dot(const vec2& r) const { return x*r.x + y*r.y; }
+    inline vec2 scale(f32 s) const { return vec2(s*x, s*y); }
+    inline vec2 add(const vec2& r) const { return vec2(x+r.x, y+r.y); }
+    inline vec2 sub(const vec2& r) const { return vec2(x-r.x, y-r.y); }
+    inline f32 sqMag() const { return x*x + y*y; }
+    inline f32 mag() const { return sqrtf(sqMag()); }
+    inline vec2 normalize() const { return scale(1.f/mag()); }
+    inline f32 distance(const vec2& r) const { return r.sub(*this).mag(); }
+    inline f32 dot(const vec2& r) const { return x*r.x + y*r.y; }
 
     bool isInside(const rect& r) {
         return ((x >= r.x) && (x<(r.x+r.w)) && (y >= r.y) && (y<(r.y+r.h)));
@@ -127,6 +138,48 @@ struct vec2 {
 inline bool operator==(const vec2& l, const vec2& r) {
     return (l.x == r.x) && (l.y == r.y);
 }
+
+struct vec3 {
+union {
+    struct { f32 data[3]; };
+    struct { f32 x; f32 y; f32 z; };
+    vec2 xy;
+};
+
+    vec3() { x= 0; y = 0; z=0; }
+    vec3(f32 v) { x = y = z = v; }
+    vec3(f32 inX, f32 inY, f32 inZ) { x = inX; y = inY; z = inZ; }
+
+    inline vec3 scale(f32 s) const { return vec3(s*x, s*y, s*z); }
+    inline vec3 add(const vec3& r) const { return vec3(x+r.x, y+r.y, z+r.z); }
+    inline vec3 sub(const vec3& r) const { return vec3(x-r.x, y-r.y, z-r.z); }
+    inline f32 sqMag() const { return x*x + y*y + z*z; }
+    inline f32 mag() const { return sqrtf(sqMag()); }
+    inline vec3 normalize() const { return scale(1.f/mag()); }
+    inline f32 distance(const vec3& r) const { return r.sub(*this).mag(); }
+    inline f32 dot(const vec3& r) const { return x*r.x + y*r.y + z*r.z; }
+};
+
+struct vec4 {
+union {
+    struct { f32 data[4]; };
+    struct { f32 x; f32 y; f32 z; f32 w; };
+    vec2 xy;
+    vec3 xyz;
+};
+    vec4() { x= 0; y = 0; z = 0; w = 0; }
+    vec4(f32 v) { x = y= z = w = v; }
+    vec4(f32 inX, f32 inY, f32 inZ, f32 inW) { x = inX; y = inY; z = inZ; w = inW; }
+
+    inline vec4 scale(f32 s) const { return vec4(s*x, s*y, s*z, s*w); }
+    inline vec4 add(const vec4& r) const { return vec4(x+r.x, y+r.y, z+r.z, w+r.w); }
+    inline vec4 sub(const vec4& r) const { return vec4(x-r.x, y-r.y, z-r.z, w-r.w); }
+    inline f32 sqMag() const { return x*x + y*y + z*z + w*w; }
+    inline f32 mag() const { return sqrtf(sqMag()); }
+    inline vec4 normalize() const { return scale(1.f/mag()); }
+    inline f32 distance(const vec4& r) const { return r.sub(*this).mag(); }
+    inline f32 dot(const vec4& r) const { return x*r.x + y*r.y + z*r.z + w*r.w; }
+};
 
 }
 
