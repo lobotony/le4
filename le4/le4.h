@@ -91,6 +91,15 @@ namespace le4 {
   void fileSave(const char* path, Data data);
   void fileSaveResource(const char* relativeFilePath, Data data);
 
+#pragma mark - Rect -
+
+struct rect {
+    f32 x,y,w,h;
+
+    rect() { x = y = w = h = 0.f; }
+    rect(f32 inX, f32 inY, f32 inW, f32 inH) { x = inX; y = inY; w = inW; h = inH; }
+};
+
 #pragma mark - vec2 -
 
 struct vec2 {
@@ -101,8 +110,23 @@ struct vec2 {
 
     vec2() { x= 0; y = 0; }
     vec2(f32 inX, f32 inY) { x = inX; y = inY; }
-    vec2 scale(f32 s) { return vec2(s*x, s*y); }
+    vec2 scale(f32 s) const { return vec2(s*x, s*y); }
+    vec2 add(const vec2& r) const { return vec2(x+r.x, y+r.y); }
+    vec2 sub(const vec2& r) const { return vec2(x-r.x, y-r.y); }
+    f32 sqMag() const { return x*x + y*y; }
+    f32 mag() const { return sqrtf(sqMag()); }
+    vec2 normalize() const { return scale(1.f/mag()); }
+    f32 distance(const vec2& r) const { return r.sub(*this).mag(); }
+    f32 dot(const vec2& r) const { return x*r.x + y*r.y; }
+
+    bool isInside(const rect& r) {
+        return ((x >= r.x) && (x<(r.x+r.w)) && (y >= r.y) && (y<(r.y+r.h)));
+    }
 };
+
+inline bool operator==(const vec2& l, const vec2& r) {
+    return (l.x == r.x) && (l.y == r.y);
+}
 
 }
 
