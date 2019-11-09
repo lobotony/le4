@@ -158,6 +158,7 @@ union {
     inline vec3 normalize() const { return scale(1.f/mag()); }
     inline f32 distance(const vec3& r) const { return r.sub(*this).mag(); }
     inline f32 dot(const vec3& r) const { return x*r.x + y*r.y + z*r.z; }
+    inline vec3 cross(const vec3& r) { return vec3(y*r.z - z*r.y, z*r.x - x*r.z, x*r.y - y*r.x); }
 };
 
 struct vec4 {
@@ -179,6 +180,249 @@ union {
     inline vec4 normalize() const { return scale(1.f/mag()); }
     inline f32 distance(const vec4& r) const { return r.sub(*this).mag(); }
     inline f32 dot(const vec4& r) const { return x*r.x + y*r.y + z*r.z + w*r.w; }
+};
+
+struct mat44 {
+    f32 data[16];
+
+    mat44() {}
+
+    inline f32 get(int row, int column)
+    {
+      LEASSERT((row >= 0) && (row < 4));
+      LEASSERT((column >= 0) && (column < 4));
+
+      return data[row*4+column];
+    }
+
+    inline void set(int row, int column, f32 v)
+    {
+      LEASSERT((row >= 0) && (row < 4));
+      LEASSERT((column >= 0) && (column < 4));
+
+      data[row*4+column] = v;
+    }
+
+    void setZero() {
+        for(int i=0; i<16; ++i)
+        {
+          data[i] = .0f;
+        }
+    }
+
+    void setIdentity() {
+        setZero();
+        data[0] = 1.f;
+        data[5] = 1.f;
+        data[10] = 1.f;
+        data[15] = 1.f;
+    }
+
+    void setTranslate(vec3 v) {
+        data[12] = v.x;
+        data[13] = v.y;
+        data[14] = v.z;
+    }
+
+    void setScale(f32 sx, f32 sy, f32 sz) {
+        data[0] = sx;
+        data[5] = sy;
+        data[10] = sz;
+    }
+
+    void setOrtho(f32 left, f32 right, f32 bottom, f32 top, f32 zNear, f32 zFar) {
+        LEASSERT(fabs(zNear - FLT_EPSILON) > 0.f);
+
+        setIdentity();
+        data[0] = 2.f / (right - left);
+        data[5] = 2.f / (top - bottom);
+        data[10] = - 2.f / (zFar - zNear);
+        data[12] = - (right + left) / (right - left);
+        data[13] = - (top + bottom) / (top - bottom);
+        data[14] = - (zFar + zNear) / (zFar - zNear);
+    }
+
+    void setPerspective(f32 fovy, f32 aspect, f32 zNear, f32 zFar)
+    {
+        LEASSERT(fabs(aspect - FLT_EPSILON) > 0.f);
+
+        f32 tanHalfFovy = tanf(fovy / 2.f);
+
+        setZero();
+        data[0] = 1.f / (aspect * tanHalfFovy);
+        data[5] = 1.f / tanHalfFovy;
+        data[10] = - (zFar + zNear) / (zFar - zNear);
+        data[11] = - 1.f;
+        data[14] = - (2.f * zFar * zNear) / (zFar - zNear);
+    }
+
+    void setLookAt(const vec3& eye, const vec3& center, const vec3& up) {
+        vec3 f = center.sub(eye).normalize();
+        vec3 s = f.sub(up).normalize();
+        vec3 u = f.cross(s);
+
+        setIdentity();
+        data[0] = s.x;
+        data[4] = s.y;
+        data[8] = s.z;
+        data[1] = u.x;
+        data[5] = u.y;
+        data[9] = u.z;
+        data[2] = -f.x;
+        data[6] = -f.y;
+        data[10] = -f.z;
+        data[12] = -s.dot(eye);
+        data[13] = -u.dot(eye);
+        data[14] = f.dot(eye);
+    }
+
+    inline void setRotate(f32 angle, const vec3& v)
+    {
+        f32 a = angle;
+        f32 c = cosf(a);
+        f32 s = sinf(a);
+
+        vec3 axis = v.normalize();
+        vec3 temp = axis.scale(1.f-c);
+
+        setIdentity();
+        set(0, 0, c + temp.x * axis.x);
+        set(0, 1, 0 + temp.x * axis.y + s * axis.z);
+        set(0, 2, 0 + temp.x * axis.z - s * axis.y);
+
+        set(1, 0, 0 + temp.y * axis.x - s * axis.z);
+        set(1, 1, c + temp.y * axis.y);
+        set(1, 2, 0 + temp.y * axis.z + s * axis.x);
+
+        set(2, 0, 0 + temp.z * axis.x + s * axis.y);
+        set(2, 1, 0 + temp.z * axis.y - s * axis.x);
+        set(2, 2, c + temp.z * axis.z);
+    }
+
+    vec4 column(u16 i) const {
+        vec4 result;
+        switch(i)
+        {
+          case 0:result = vec4(data[0], data[1], data[2], data[3]);break;
+          case 1:result = vec4(data[4], data[5], data[6], data[7]);break;
+          case 2:result = vec4(data[8], data[9], data[10], data[11]);break;
+          case 3:result = vec4(data[12], data[13], data[14], data[15]);break;
+          default:result=vec4(0);LEASSERTM(false, "Matrix column index out of bounds");break;
+        }
+        return result;
+    }
+
+    vec4 row(u16 i) const {
+        vec4 result;
+
+        switch(i)
+        {
+          case 0:result = vec4(data[0], data[4], data[8], data[12]);break;
+          case 1:result = vec4(data[1], data[5], data[9], data[13]);break;
+          case 2:result = vec4(data[2], data[6], data[10], data[14]);break;
+          case 3:result = vec4(data[3], data[7], data[11], data[15]);break;
+          default:result=vec4(0);LEASSERTM(false, "Matrix row index out of bounds");break;
+        }
+
+        return result;
+    }
+
+
+    mat44 transpose() const {
+        mat44 result = *this;
+        std::swap(result.data[1], result.data[4]);
+        std::swap(result.data[2], result.data[8]);
+        std::swap(result.data[6], result.data[9]);
+        std::swap(result.data[3], result.data[12]);
+        std::swap(result.data[7], result.data[13]);
+        std::swap(result.data[11], result.data[14]);
+        return result;
+    }
+
+    mat44 mult(const mat44& r) {
+        mat44 result;
+        vec4 lr0 = row(0);
+        vec4 lr1 = row(1);
+        vec4 lr2 = row(2);
+        vec4 lr3 = row(3);
+
+        vec4 t = column(0);
+        result.data[0] = lr0.dot(t);
+        result.data[1] = lr1.dot(t);
+        result.data[2] = lr2.dot(t);
+        result.data[3] = lr3.dot(t);
+
+        t = column(1);
+        result.data[4] = lr0.dot(t);
+        result.data[5] = lr1.dot(t);
+        result.data[6] = lr2.dot(t);
+        result.data[7] = lr3.dot(t);
+
+        t = column(2);
+        result.data[8] = lr0.dot(t);
+        result.data[9] = lr1.dot(t);
+        result.data[10] = lr2.dot(t);
+        result.data[11] = lr3.dot(t);
+
+        t = column(3);
+        result.data[12] = lr0.dot(t);
+        result.data[13] = lr1.dot(t);
+        result.data[14] = lr2.dot(t);
+        result.data[15] = lr3.dot(t);
+
+        return result;
+    }
+
+    static inline mat44 zero() { mat44 r; r.setZero(); return r; }
+    static inline mat44 identity() { mat44 r; r.setIdentity(); return r; }
+    static inline mat44 translate(const vec3& v) { mat44 r; r.setTranslate(v); return r; }
+    static inline mat44 scale(f32 sx, f32 sy, f32 sz) { mat44 r; r.setScale(sx, sy, sz); return r; }
+    static inline mat44 ortho(f32 left, f32 right, f32 bottom, f32 top, f32 zNear, f32 zFar) {
+        mat44 result;
+        result.setOrtho(left, right, bottom, top, zNear, zFar);
+        return result;
+    }
+    static inline mat44 ortho2d(f32 left, f32 right, f32 bottom, f32 top) {
+        mat44 result;
+        result.setOrtho(left, right, bottom, top, -1.f, 1.f);
+        return result;
+    }
+    static inline mat44 perspective(f32 fovy, f32 aspect, f32 zNear, f32 zFar) {
+        mat44 result;
+        result.setPerspective(fovy, aspect, zNear, zFar);
+        return result;
+    }
+    static inline mat44 lookAt(const vec3& eye, const vec3& center, const vec3& up) {
+        mat44 result;
+        result.setLookAt(eye, center, up);
+        return result;
+    }
+    static inline mat44 rotate(f32 angle, const vec3& v) {
+        mat44 result;
+        result.setRotate(angle, v);
+        return result;
+    }
+
+    vec4 transform(const vec4& v) {
+        vec4 result;
+
+        result.x = row(0).dot(v);
+        result.y = row(1).dot(v);
+        result.z = row(2).dot(v);
+        result.w = row(3).dot(v);
+
+        return result;
+    }
+
+    vec3 transform(const vec3& v) {
+        vec4 tmp;
+        tmp.xyz = v;
+        tmp.w = 1.0;
+        vec4 r = transform(tmp);
+        return r.xyz;
+    }
+
+
 };
 
 }
