@@ -421,7 +421,199 @@ struct mat44 {
         vec4 r = transform(tmp);
         return r.xyz;
     }
+};
 
+struct mat33 {
+    f32 data[9];
+
+    inline f32 get(int row, int column)
+    {
+      LEASSERT((row >= 0) && (row < 3));
+      LEASSERT((column >= 0) && (column < 3));
+
+      return data[row*3+column];
+    }
+
+    inline void set(int row, int column, f32 v)
+    {
+      LEASSERT((row >= 0) && (row < 3));
+      LEASSERT((column >= 0) && (column < 3));
+
+      data[row*3+column] = v;
+    }
+
+    void setZero() {
+        for(int i=0; i<9; ++i)
+        {
+          data[i] = .0f;
+        }
+    }
+
+    void setIdentity() {
+        setZero();
+        data[0] = 1.f;
+        data[4] = 1.f;
+        data[8] = 1.f;
+    }
+
+    void setRotate(f32 angle, const vec3& v)
+    {
+      f32 a = angle;
+      f32 c = cosf(a);
+      f32 s = sinf(a);
+
+      vec3 axis = v.normalize();
+      vec3 temp = axis.scale(1.f-c);
+
+      setIdentity();
+      set(0, 0, c + temp.x * axis.x);
+      set(0, 1, 0 + temp.x * axis.y + s * axis.z);
+      set(0, 2, 0 + temp.x * axis.z - s * axis.y);
+
+      set(1, 0, 0 + temp.y * axis.x - s * axis.z);
+      set(1, 1, c + temp.y * axis.y);
+      set(1, 2, 0 + temp.y * axis.z + s * axis.x);
+
+      set(2, 0, 0 + temp.z * axis.x + s * axis.y);
+      set(2, 1, 0 + temp.z * axis.y - s * axis.x);
+      set(2, 2, c + temp.z * axis.z);
+    }
+
+    void setScale(f32 sx, f32 sy, f32 sz)
+    {
+      data[0] = sx;
+      data[4] = sy;
+      data[8] = sz;
+    }
+
+    static inline mat33 from(const mat44& r) {
+        mat33 result;
+
+        result.data[0] = r.data[0];
+        result.data[1] = r.data[1];
+        result.data[2] = r.data[2];
+
+        result.data[3] = r.data[4];
+        result.data[4] = r.data[5];
+        result.data[5] = r.data[6];
+
+        result.data[6] = r.data[8];
+        result.data[7] = r.data[9];
+        result.data[8] = r.data[10];
+
+        return result;
+    }
+
+    vec3 column(u16 i) const {
+        vec3 result;
+        switch(i)
+        {
+          case 0:result = vec3(data[0], data[1], data[2]);break;
+          case 1:result = vec3(data[3], data[4], data[5]);break;
+          case 2:result = vec3(data[6], data[7], data[8]);break;
+            default:result = vec3(0);LEASSERTM(false, "Matrix column index out of bounds");break;
+        }
+        return result;
+    }
+
+    vec3 row(u16 i) const {
+        vec3 result;
+        switch(i)
+        {
+          case 0:result = vec3(data[0], data[3], data[6]);break;
+          case 1:result = vec3(data[1], data[4], data[7]);break;
+          case 2:result = vec3(data[2], data[5], data[8]);break;
+          default:result = vec3(0);LEASSERTM(false, "Matrix row index out of bounds");break;
+        }
+        return result;
+    }
+
+    mat33 transpose() const {
+        mat33 result = *this;
+        std::swap(result.data[1], result.data[3]);
+        std::swap(result.data[2], result.data[6]);
+        std::swap(result.data[5], result.data[7]);
+        return result;
+    }
+
+    mat33 mul(const mat33& r) const {
+        mat33 result;
+        vec3 lr0 = row(0);
+        vec3 lr1 = row(1);
+        vec3 lr2 = row(2);
+
+        vec3 t = column(0);
+        result.data[0] = lr0.dot(t);
+        result.data[1] = lr1.dot(t);
+        result.data[2] = lr2.dot(t);
+
+        t = column(1);
+        result.data[3] = lr0.dot(t);
+        result.data[4] = lr1.dot(t);
+        result.data[5] = lr2.dot(t);
+
+        t = column(2);
+        result.data[6] = lr0.dot(t);
+        result.data[7] = lr1.dot(t);
+        result.data[8] = lr2.dot(t);
+        return result;
+    }
+
+    // calculates the determinant
+    f32 det() const {
+        f32 result = 0.f;
+        const f32* m = data;
+
+        result = + m[0] * (m[4] * m[8] - m[7] * m[5])
+        - m[3] * (m[1] * m[8] - m[7] * m[2])
+        + m[6] * (m[1] * m[5] - m[4] * m[2]);
+
+        return result;
+    }
+
+    mat33 inverse() const
+    {
+      f32 OneOverDeterminant = 1.f / det();
+
+      mat33 result;
+
+      const f32* m = data;
+
+      result.data[0] = + (m[4] * m[8] - m[7] * m[5]) * OneOverDeterminant;
+      result.data[3] = - (m[3] * m[8] - m[6] * m[5]) * OneOverDeterminant;
+      result.data[6] = + (m[3] * m[7] - m[6] * m[4]) * OneOverDeterminant;
+      result.data[1] = - (m[1] * m[8] - m[7] * m[2]) * OneOverDeterminant;
+      result.data[4] = + (m[0] * m[8] - m[6] * m[2]) * OneOverDeterminant;
+      result.data[7] = - (m[0] * m[7] - m[6] * m[1]) * OneOverDeterminant;
+      result.data[2] = + (m[1] * m[5] - m[4] * m[2]) * OneOverDeterminant;
+      result.data[5] = - (m[0] * m[5] - m[3] * m[2]) * OneOverDeterminant;
+      result.data[8] = + (m[0] * m[4] - m[3] * m[1]) * OneOverDeterminant;
+
+      return result;
+    }
+
+    vec3 transform(const vec3& v) const {
+        vec3 result;
+
+        result.x = row(0).dot(v);
+        result.y = row(1).dot(v);
+        result.z = row(2).dot(v);
+
+        return result;
+    }
+
+    static inline mat33 scale(f32 sx, f32 sy, f32 sz) {
+        mat33 result;
+        result.setIdentity();
+        result.setScale(sx, sy, sz);
+        return result;
+    }
+
+    static inline mat33 rotate(f32 angle, const vec3& v) {
+        mat33 result;
+        result.setRotate(angle, v);
+        return result;
+    }
 
 };
 
