@@ -102,6 +102,35 @@ inline u32 hashDjb2(const char* data) {
   void fileSave(const char* path, Data data);
   void fileSaveResource(const char* relativeFilePath, Data data);
 
+#pragma mark - Bitmap -
+
+  enum BitmapFormat {
+      Undefined,
+      A,
+      RGB,
+      RGBA
+  };
+
+  struct Bitmap {
+      u8*             data;   // points to the raw pixel data
+      u16             width;  // width in pixels
+      u16             height; // height in pixels
+      BitmapFormat    format; // format of bitmap (rgb, rgba)
+      bool            premultiplied; // true if alpha was premlultiplied, false otherwise
+      bool            loaded; // true if the image was loaded with the image library and data must be freed by it.
+      // false if data is just a chunk of memory and can simply be deleted
+
+      void init(u16 inWidth, u16 inHeight, BitmapFormat inFormat);
+      void init(const Data& data);
+      void deinit();
+
+      void write(const char* path);
+      void flip();
+      void premultiply();
+      void clear(u32 clearColor);
+      void setPixel(u16 x, u16 y, u32 color);
+  };
+
 #pragma mark - Rect -
 
 struct rect {
