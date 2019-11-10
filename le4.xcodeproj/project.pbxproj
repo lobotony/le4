@@ -10,6 +10,9 @@
 		356EEFC32374D63500594D2A /* le4Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 356EEFC22374D63500594D2A /* le4Tests.mm */; };
 		3584BAB421F369F300906C37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3584BAB321F369F300906C37 /* Assets.xcassets */; };
 		3584BABA21F369F300906C37 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3584BAB921F369F300906C37 /* main.cpp */; };
+		359A48902377117D001A206C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359A488E237710FA001A206C /* OpenGL.framework */; };
+		359A4893237712A8001A206C /* TestRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 359A4891237712A8001A206C /* TestRenderer.cpp */; };
+		359A489923771397001A206C /* legl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 359A489723771397001A206C /* legl.cpp */; };
 		35B027F421F6769600C9A7E3 /* le4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35B027F321F6769600C9A7E3 /* le4.cpp */; };
 		35B027F621F681F400C9A7E3 /* resources in Resources */ = {isa = PBXBuildFile; fileRef = 35B027F521F681F400C9A7E3 /* resources */; };
 		35C372B721F36A87008128BD /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C372B621F36A87008128BD /* SDL2.framework */; };
@@ -48,6 +51,11 @@
 		3584BAB321F369F300906C37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3584BAB821F369F300906C37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3584BAB921F369F300906C37 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		359A488E237710FA001A206C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		359A4891237712A8001A206C /* TestRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestRenderer.cpp; sourceTree = "<group>"; };
+		359A4892237712A8001A206C /* TestRenderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestRenderer.hpp; sourceTree = "<group>"; };
+		359A489723771397001A206C /* legl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = legl.cpp; sourceTree = "<group>"; };
+		359A489823771397001A206C /* legl.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = legl.hpp; sourceTree = "<group>"; };
 		35B027F221F6769600C9A7E3 /* le4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = le4.h; sourceTree = "<group>"; };
 		35B027F321F6769600C9A7E3 /* le4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = le4.cpp; sourceTree = "<group>"; };
 		35B027F521F681F400C9A7E3 /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = "<group>"; };
@@ -69,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				359A48902377117D001A206C /* OpenGL.framework in Frameworks */,
 				35C372B721F36A87008128BD /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,6 +125,10 @@
 				35D7E4202373838D00A85529 /* leApp.cpp */,
 				35D7E4212373838D00A85529 /* leApp.hpp */,
 				3584BAB921F369F300906C37 /* main.cpp */,
+				359A4891237712A8001A206C /* TestRenderer.cpp */,
+				359A4892237712A8001A206C /* TestRenderer.hpp */,
+				359A489723771397001A206C /* legl.cpp */,
+				359A489823771397001A206C /* legl.hpp */,
 			);
 			path = le4;
 			sourceTree = "<group>";
@@ -123,6 +136,7 @@
 		35C372B521F36A87008128BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				359A488E237710FA001A206C /* OpenGL.framework */,
 				35C372B621F36A87008128BD /* SDL2.framework */,
 			);
 			name = Frameworks;
@@ -235,8 +249,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				359A4893237712A8001A206C /* TestRenderer.cpp in Sources */,
 				3584BABA21F369F300906C37 /* main.cpp in Sources */,
 				35B027F421F6769600C9A7E3 /* le4.cpp in Sources */,
+				359A489923771397001A206C /* legl.cpp in Sources */,
 				35D7E4222373838D00A85529 /* leApp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
