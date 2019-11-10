@@ -18,7 +18,7 @@ namespace le4 {
 
     char* logmsg;
     vasprintf(&logmsg, fmt, va);
-    printf("%8d - %s : %d : %s : %s\n", SDL_GetTicks(), filename, line, func, logmsg);
+    printf("%8d - %s:%d : %s : %s\n", SDL_GetTicks(), filename, line, func, logmsg);
     free(logmsg);
     va_end(va);
   }
