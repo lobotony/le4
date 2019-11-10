@@ -182,31 +182,31 @@ namespace le4 {
         leFree(absoluteFilePath);
     }
 
-    void init(u16 inWidth, u16 inHeight, BitmapFormat inFormat) {
+    void Bitmap::init(u16 inWidth, u16 inHeight, BitmapFormat inFormat) {
 
     }
 
-    void init(const Data& data) {
+    void Bitmap::init(const Data& data) {
 
     }
-    void deinit() {
-
-    }
-
-    void write(const char* path) {
+    void Bitmap::deinit() {
 
     }
 
-    void flip() {
+    void Bitmap::write(const char* path) {
 
     }
-    void premultiply() {
+
+    void Bitmap::flip() {
 
     }
-    void clear(u32 clearColor) {
+    void Bitmap::premultiply() {
 
     }
-    void setPixel(u16 x, u16 y, u32 color) {
+    void Bitmap::clear(u32 clearColor) {
+
+    }
+    void Bitmap::setPixel(u16 x, u16 y, u32 color) {
 
     }
 }
