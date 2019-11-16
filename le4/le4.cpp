@@ -211,7 +211,7 @@ namespace le4 {
     }
 
     void Bitmap::init(u16 inWidth, u16 inHeight, BitmapFormat inFormat) {
-        destroy();
+        deinit(); // get rid of old data if present
         u32 destBytesPerPixel = bitmapFormatToBytesPerPixel(format);
         u32 destSizeInBytes = destBytesPerPixel * width * height;
         data = (u8*)SDL_malloc(destSizeInBytes);
@@ -222,6 +222,7 @@ namespace le4 {
     }
 
     void Bitmap::init(const Data& inData) {
+        deinit(); // get rid of old data if present
         int bytesPerPixel, w, h = 0;
         data = stbi_load_from_memory(inData.bytes, (s32)(inData.size), &w, &h, &bytesPerPixel, 0);
         if(!data)
@@ -243,11 +244,8 @@ namespace le4 {
         }
         loaded = true;
     }
-    void Bitmap::deinit() {
-        destroy();
-    }
 
-    void Bitmap::destroy() {
+    void Bitmap::deinit() {
         if(data) {
             if(loaded) {
                 stbi_image_free(data);
