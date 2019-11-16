@@ -28,6 +28,8 @@ namespace le4 {
         va_end(va);
     }
 
+    // le memory functions are only intended as optional indirection layers for SDL_memory functions.
+    // use the SDL ones rather than these.
     static u32 numMalloc = 0;
     static u32 numCalloc = 0;
     static u32 numRealloc = 0;
@@ -68,7 +70,7 @@ namespace le4 {
     Data* Data::init(const u8* inBytes, u32 inSize) {
         SDL_memset(this, 0, sizeof(Data));
         if(inSize > 0) {
-          bytes = (u8*)leMalloc(inSize);
+          bytes = (u8*)SDL_malloc(inSize);
           if(inBytes) {
             SDL_memcpy(bytes, inBytes, inSize);
           }
@@ -83,7 +85,7 @@ namespace le4 {
 
     void Data::deinit() {
         if(bytes) {
-          leFree(bytes);
+          SDL_free(bytes);
         }
         SDL_memset(this, 0, sizeof(Data));
     }
@@ -99,10 +101,10 @@ namespace le4 {
         size_t sepsz = SDL_strlen(sep);
         size_t sz = lsz + rsz + sepsz+1;
 
-        char* result = (char*)leMalloc(sz);
-        strcpy(result, l);
-        strcpy(result+lsz, sep);
-        strcpy(result+lsz+sepsz, r);
+        char* result = (char*)SDL_malloc(sz);
+        SDL_strlcpy(result, l, sz);
+        SDL_strlcpy(result+lsz, sep, sz);
+        SDL_strlcpy(result+lsz+sepsz, r, sz);
 
         return result;
     }
@@ -179,7 +181,7 @@ namespace le4 {
 
         Data result = fileLoad(absoluteFilePath);
 
-        leFree(absoluteFilePath);
+        SDL_free(absoluteFilePath);
 
         return result;
     }
@@ -191,7 +193,7 @@ namespace le4 {
 
         fileSave(absoluteFilePath, data);
 
-        leFree(absoluteFilePath);
+        SDL_free(absoluteFilePath);
     }
 
     void Bitmap::init(u16 inWidth, u16 inHeight, BitmapFormat inFormat) {
