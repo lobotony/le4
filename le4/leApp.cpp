@@ -5,6 +5,7 @@ namespace le4 {
 
 void App::run(const char* windowName, u16 windowWidth, u16 windowHeight, const char* prefsOrg, const char* prefsProduct) {
 
+    patchSDLMemoryFuncs();
     SDL_version version;
     SDL_GetVersion(&version);
     LELOG("SDL version: %d.%d.%d '%s'", version.major, version.minor, version.patch, SDL_GetRevision());
@@ -94,7 +95,7 @@ void App::run(const char* windowName, u16 windowWidth, u16 windowHeight, const c
     SDL_free(prefsPath);
     // nothing to deinit for input
 
-    leMemDumpLog();
+    dumpMemoryLog();
     LELOG("stopped");
     SDL_Quit();
 }

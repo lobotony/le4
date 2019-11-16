@@ -80,10 +80,9 @@ inline u32 hashDjb2(const char* data) {
 
 #pragma mark - Memory -
 
-  void* leMalloc(size_t size);
-  void* leRealloc(void* ptr, size_t size);
-  void leFree(void* ptr);
-  void leMemDumpLog();
+    void patchSDLMemoryFuncs();
+    void dumpMemoryLog();
+
 
 #pragma mark - Data -
 

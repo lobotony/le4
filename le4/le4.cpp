@@ -29,28 +29,40 @@ namespace le4 {
     }
 
     static u32 numMalloc = 0;
+    static u32 numCalloc = 0;
     static u32 numRealloc = 0;
     static u32 numFree = 0;
 
     void* leMalloc(size_t size) {
         numMalloc++;
-        return SDL_malloc(size);
+        return malloc(size);
+    }
+
+    void* leCalloc(size_t count, size_t size) {
+        numCalloc++;
+        return calloc(count, size);
     }
 
     void* leRealloc(void* ptr, size_t size) {
         numRealloc++;
-        return SDL_realloc(ptr, size);
+        return realloc(ptr, size);
     }
 
     void leFree(void* ptr) {
         numFree++;
-        SDL_free(ptr);
+        free(ptr);
     }
 
-    void leMemDumpLog() {
+    void dumpMemoryLog() {
         LELOG("mallocs: %d", numMalloc);
+        LELOG("callocs: %d", numCalloc);
         LELOG("reallocs: %d", numRealloc);
         LELOG("frees: %d", numFree);
+        LELOG("num allocs: %d", SDL_GetNumAllocations());
+    }
+
+    void patchSDLMemoryFuncs() {
+        SDL_SetMemoryFunctions(leMalloc, leCalloc, leRealloc, leFree);
     }
 
     Data* Data::init(const u8* inBytes, u32 inSize) {
