@@ -23,9 +23,9 @@ struct App {
              const char* prefsProduct);
 
     // override these to customise
-    void startup();
-    void update();
-    void shutdown();
+    virtual void startup();
+    virtual void update();
+    virtual void shutdown();
 
     void quit(); // request application quit
 };

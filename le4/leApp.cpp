@@ -48,8 +48,8 @@ void App::run(const char* windowName, u16 windowWidth, u16 windowHeight, const c
     leGuiInit(&app->gui, &app->r2d);
     leInputInit();
     leAudioInit(&app->audio);
-    leAppStartup(app);*/
-
+    */
+    startup();
     SDL_Event e;
     running = true;
     while(running) {
