@@ -1,6 +1,6 @@
 #include <iostream>
 #include "leApp.h"
-#include "TestRenderer.h
+#include "TestRenderer.h"
 
 using std::cout;
 using namespace le4;

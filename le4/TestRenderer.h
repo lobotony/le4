@@ -1,8 +1,10 @@
 #pragma once
 
+#include "legl.h"
+
 struct TestRenderer {
-    int testShader;
-    int testQuadVao;
+    int shader;
+    GLuint vao;
 
     void init();
 

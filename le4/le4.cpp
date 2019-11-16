@@ -109,6 +109,16 @@ namespace le4 {
         return result;
     }
 
+    char* concat(const char* l, const char* r) {
+        size_t ll = SDL_strlen(l);
+        size_t lr = SDL_strlen(r);
+        size_t sz = ll+lr+1;
+        char* result = (char*)SDL_malloc(sz);
+        SDL_strlcpy(result, l, sz);
+        SDL_strlcat(result, r, sz);
+        return result;
+    }
+
     static const char* _respath = NULL;
 
     const char* resPath()

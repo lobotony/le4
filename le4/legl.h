@@ -3,6 +3,7 @@
 #define GL_SILENCE_DEPRECATION
 #include <OpenGL/gl3.h>
 #include <stdlib.h>
+#include "le4.h"
 
 #define LEGL_MAX_VERTEXATTRIBUTES 4
 #define LEGL_MAX_TEXTURES 4
@@ -22,12 +23,14 @@ namespace le4 {
     };
 
 
-    const char* leGLErrorToString(GLenum err);
-    size_t glTypeToSize(GLenum type);
+    const char* leglErrorToString(GLenum err);
+    size_t leglTypeToSize(GLenum type);
+
+    GLuint loadShaderProgram(const char* path);
 
     #if 1
-    #define GLDEBUG {GLenum err; while((err = glGetError())) { LELOG("GL error: %s", le4::leGLErrorToString(err)); }}
-    #define GLASSERT {GLenum err; int numErrors = 0; while((err = glGetError())) { LELOG("GL error: %s", le4::leGLErrorToString(err)); numErrors++;} if(numErrors>0) {LEASSERTM(false, "failed with GL error");}}
+    #define GLDEBUG {GLenum err; while((err = glGetError())) { LELOG("GL error: %s", le4::leglErrorToString(err)); }}
+    #define GLASSERT {GLenum err; int numErrors = 0; while((err = glGetError())) { LELOG("GL error: %s", le4::leglErrorToString(err)); numErrors++;} if(numErrors>0) {LEASSERTM(false, "failed with GL error");}}
     #else
     #define GLDEBUG
     #define GLASSERT

@@ -122,5 +122,9 @@ void App::update() {
 void App::shutdown() {
 }
 
+void App::quit() {
+    running = false;
+}
+
 }
 

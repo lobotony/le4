@@ -39,6 +39,11 @@ namespace le4 {
   // assert without abort
 #define LEVERIFYM(cond, ...) { int LOST_ASSERT_COND = (int)(cond); if(!LOST_ASSERT_COND) {LELOG(__VA_ARGS__);} }
 
+#pragma mark - string -
+
+    char* pathCat(const char* l, const char* r);
+    char* concat(const char* l, const char* r);
+
 #pragma mark - Math -
 
 #define LE_DEG2RAD_F ((2.f*M_PI)/360.f)
