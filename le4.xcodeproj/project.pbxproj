@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FB8DC132E4A32661772E806 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FB8D9499A4A460CA319BDF0 /* main.cpp */; };
 		356EEFC32374D63500594D2A /* le4Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 356EEFC22374D63500594D2A /* le4Tests.mm */; };
 		3584BAB421F369F300906C37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3584BAB321F369F300906C37 /* Assets.xcassets */; };
-		3584BABA21F369F300906C37 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3584BAB921F369F300906C37 /* main.cpp */; };
 		359A48902377117D001A206C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359A488E237710FA001A206C /* OpenGL.framework */; };
 		359A4893237712A8001A206C /* TestRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 359A4891237712A8001A206C /* TestRenderer.cpp */; };
 		359A489923771397001A206C /* legl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 359A489723771397001A206C /* legl.cpp */; };
@@ -47,6 +47,7 @@
 		2FB8D041FD3DC29A458C9D6C /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		2FB8D5A0408BE7AD68F4EB2A /* legl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = legl.h; sourceTree = "<group>"; };
 		2FB8D6D7A65E244C1ED80794 /* TestRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRenderer.h; sourceTree = "<group>"; };
+		2FB8D9499A4A460CA319BDF0 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2FB8D990E072636BA77741B9 /* stb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_truetype.h; sourceTree = "<group>"; };
 		2FB8DBA270A22682AECE0BDE /* leApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = leApp.h; sourceTree = "<group>"; };
 		2FB8DBDA6852DEB039C76B56 /* stb_image_write.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image_write.h; sourceTree = "<group>"; };
@@ -56,7 +57,6 @@
 		3584BAAD21F369F200906C37 /* le4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = le4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3584BAB321F369F300906C37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3584BAB821F369F300906C37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3584BAB921F369F300906C37 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		359A488E237710FA001A206C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		359A4891237712A8001A206C /* TestRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestRenderer.cpp; sourceTree = "<group>"; };
 		359A489723771397001A206C /* legl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = legl.cpp; sourceTree = "<group>"; };
@@ -106,6 +106,7 @@
 				356EEFB92374D54300594D2A /* le4Tests */,
 				3584BAAE21F369F200906C37 /* Products */,
 				35C372B521F36A87008128BD /* Frameworks */,
+				2FB8D9499A4A460CA319BDF0 /* main.cpp */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,7 +127,6 @@
 				35B027F321F6769600C9A7E3 /* le4.cpp */,
 				35B027F221F6769600C9A7E3 /* le4.h */,
 				35D7E4202373838D00A85529 /* leApp.cpp */,
-				3584BAB921F369F300906C37 /* main.cpp */,
 				359A4891237712A8001A206C /* TestRenderer.cpp */,
 				359A489723771397001A206C /* legl.cpp */,
 				2FB8DBA270A22682AECE0BDE /* leApp.h */,
@@ -256,10 +256,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				359A4893237712A8001A206C /* TestRenderer.cpp in Sources */,
-				3584BABA21F369F300906C37 /* main.cpp in Sources */,
 				35B027F421F6769600C9A7E3 /* le4.cpp in Sources */,
 				359A489923771397001A206C /* legl.cpp in Sources */,
 				35D7E4222373838D00A85529 /* leApp.cpp in Sources */,
+				2FB8DC132E4A32661772E806 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
