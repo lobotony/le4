@@ -196,31 +196,143 @@ namespace le4 {
         SDL_free(absoluteFilePath);
     }
 
-    void Bitmap::init(u16 inWidth, u16 inHeight, BitmapFormat inFormat) {
-
+    u8 bitmapFormatToBytesPerPixel(BitmapFormat v) {
+        u8 result = 0;
+        switch(v) {
+            case Undefined:
+                result = 0;
+                LELOG("WARNING: can't determine size for undefined format");
+                break;
+            case A:result=1; break;
+            case RGB:result=3; break;
+            case RGBA:result=4; break;
+        }
+        return result;
     }
 
-    void Bitmap::init(const Data& data) {
+    void Bitmap::init(u16 inWidth, u16 inHeight, BitmapFormat inFormat) {
+        destroy();
+        u32 destBytesPerPixel = bitmapFormatToBytesPerPixel(format);
+        u32 destSizeInBytes = destBytesPerPixel * width * height;
+        data = (u8*)SDL_malloc(destSizeInBytes);
+        loaded = false; // prevent stb_image from freeing
+        width = inWidth;
+        height = inHeight;
+        format = inFormat;
+    }
 
+    void Bitmap::init(const Data& inData) {
+        int bytesPerPixel, w, h = 0;
+        data = stbi_load_from_memory(inData.bytes, (s32)(inData.size), &w, &h, &bytesPerPixel, 0);
+        if(!data)
+        {
+            LELOG("ERROR: couldn't init image from memory: %s", stbi_failure_reason());
+            LEASSERT(false);
+        }
+        width = (u16)w;
+        height = (u16)h;
+
+        switch(bytesPerPixel)
+        {
+            case 3:format = RGB;break;
+            case 4:format = RGBA;break;
+            default:
+            LELOG("ERROR: couldn't init image, don't know what to do with bytesPerPixel: %d", bytesPerPixel);
+                LEASSERT(false);
+                break;
+        }
+        loaded = true;
     }
     void Bitmap::deinit() {
+        destroy();
+    }
 
+    void Bitmap::destroy() {
+        if(data) {
+            if(loaded) {
+                stbi_image_free(data);
+            } else {
+                SDL_free(data);
+            }
+        }
+
+        data = NULL;
+        width = 0;
+        height = 0;
+        format = Undefined;
+        premultiplied = false;
+        loaded = false;
     }
 
     void Bitmap::write(const char* path) {
-
+        int bpp = bitmapFormatToBytesPerPixel(format);
+        if(!stbi_write_png(path, width, height, bpp, data, bpp*width)) {
+            LELOG("screenshot save failed");
+        }
     }
 
     void Bitmap::flip() {
-
+        u16 pixelSizeBytes = bitmapFormatToBytesPerPixel(format);
+        // flip vertically because OpenGL returns it the other way round
+        u16 lineInBytes = width * pixelSizeBytes;
+        u16 halfHeight = u16(height / 2); // deliberately round down if height is odd
+        u8* dataBytes = data;
+        for(u16 bottomLine=0; bottomLine<halfHeight; ++bottomLine) {
+            u16 topLine = u16((height - 1) - bottomLine);
+            for(u16 bi=0; bi<lineInBytes; ++bi) {
+                u16 topLineByte = width*topLine*pixelSizeBytes+bi;
+                u16 bottomLineByte = width*bottomLine*pixelSizeBytes+bi;
+                u8 b = dataBytes[topLineByte];
+                dataBytes[topLineByte] = dataBytes[bottomLineByte];
+                dataBytes[bottomLineByte] = b;
+            }
+        }
     }
+
     void Bitmap::premultiply() {
+        LEASSERTM(format == RGBA, "premutiply only supported for RGBA bitmaps");
+        u32* pp = (u32*)data;
+        f32 n = 1/255.0f;
+        for(int y=0; y<height; ++y) {
+            for(int x=0; x<width; ++x) {
+                int i = y*width+x;
+                u32 p = pp[i];
+                f32 a = ((f32)((p & 0xff000000)>>24))*n;
+                f32 b = ((f32)((p & 0x00ff0000)>>16))*n;
+                f32 g = ((f32)((p & 0x0000ff00)>>8))*n;
+                f32 r = ((f32)(p & 0x000000ff))*n;
 
+                r*=a;
+                g*=a;
+                b*=a;
+
+                p = (
+                        ((u32)(a*255.0f)<<24) |
+                                ((u32)(b*255.0f)<<16) |
+                                ((u32)(g*255.0f)<<8) |
+                                ((u32)(r*255.0f))
+                );
+                pp[i] = p;
+            }
+        }
     }
+
     void Bitmap::clear(u32 clearColor) {
-
+        LEASSERTM(format == RGBA, "clear only supported for RGBA bitmaps");
+        u32* pp = (u32*)data;
+        for(s32 x=0; x<width; ++x) {
+            for(s32 y=0; y<height; ++y) {
+                int i = y*width+x;
+                pp[i] = clearColor;
+            }
+        }
     }
-    void Bitmap::setPixel(u16 x, u16 y, u32 color) {
 
+    void Bitmap::setPixel(u16 x, u16 y, u32 color) {
+        LEASSERTM(format == RGBA, "setpixel only supported for RGBA bitmaps");
+        LEASSERT((x < width) && (y < height));
+        int i = y*width+x;
+        u32* pp = (u32*)data;
+        pp[i] = color;
     }
 }

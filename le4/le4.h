@@ -128,6 +128,9 @@ inline u32 hashDjb2(const char* data) {
       void premultiply();
       void clear(u32 clearColor);
       void setPixel(u16 x, u16 y, u32 color);
+
+  private:
+      void destroy(); // throw away and dealloc all data
   };
 
 #pragma mark - Rect -
