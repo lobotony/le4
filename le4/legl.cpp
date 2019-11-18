@@ -26,8 +26,12 @@ namespace le4 {
     size_t leglTypeToSize(GLenum type) {
         size_t result = 0;
         switch(type) {
-            case GL_UNSIGNED_BYTE:result = 1;break;
+            case GL_BYTE:
+            case GL_UNSIGNED_BYTE:
+                result = 1;break;
+            case GL_SHORT:
             case GL_UNSIGNED_SHORT:result = 2;break;
+            case GL_INT:
             case GL_UNSIGNED_INT:result = 4;break;
             default:
                 LEASSERTM(false, "unknown type: %d", type);
@@ -151,4 +155,35 @@ namespace le4 {
         return shaderProgram;
     }
 
+    size_t leglVertexAttribute::sizeInBytes() {
+        return size* leglTypeToSize(type);
+    }
+
+    void leglVertexAttribute::init() {
+        name = NULL;
+        size = 0;
+        type = 0;
+        stride = 0;
+        offset = NULL;
+        normalized = 0;
+    }
+
+    size_t leglVertexAttributes::totalSize() {
+        size_t result = 0;
+        for(int i=0; i<LEGL_MAX_VERTEXATTRIBUTES; ++i) {
+            result += attributes[i].sizeInBytes();
+        }
+        return result;
+    }
+
+    void leglVertexAttributes::updateStrideOffset() {
+        size_t ts = totalSize();
+        size_t offset = 0;
+        for(int i=0; i<LEGL_MAX_VERTEXATTRIBUTES; ++i) {
+            size_t currentSize = attributes[i].sizeInBytes();
+            attributes[i].stride = (GLsizei)ts;
+            attributes[i].offset = (GLvoid*)offset;
+            offset += currentSize;
+        }
+    }
 }
