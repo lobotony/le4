@@ -26,11 +26,14 @@ namespace le4 {
     size_t leglTypeToSize(GLenum type) {
         size_t result = 0;
         switch(type) {
+            case 0:
+                result = 0;break;
             case GL_BYTE:
             case GL_UNSIGNED_BYTE:
                 result = 1;break;
             case GL_SHORT:
             case GL_UNSIGNED_SHORT:result = 2;break;
+            case GL_FLOAT:
             case GL_INT:
             case GL_UNSIGNED_INT:result = 4;break;
             default:
@@ -159,6 +162,15 @@ namespace le4 {
         return size* leglTypeToSize(type);
     }
 
+    void VertexAttribute::init() {
+        name = NULL;
+        size = 0;
+        type = 0;
+        stride = 0;
+        offset = NULL;
+        normalized = 0;
+    }
+
     void VertexAttribute::init(GLchar* inName, GLint inSize, GLenum inType) {
         name = inName;
         size = inSize;
@@ -185,5 +197,26 @@ namespace le4 {
             attributes[i].offset = (GLvoid*)offset;
             offset += currentSize;
         }
+    }
+
+    VertexAttributes& VertexAttributes::begin() {
+        // reset index and all attributes
+        update_index = 0;
+        for(int i=0; i<LEGL_MAX_VERTEXATTRIBUTES; ++i) {
+            attributes[i].init();
+        }
+        return *this;
+    }
+
+    VertexAttributes& VertexAttributes::set(GLchar* inName, GLint inSize, GLenum inType) {
+        LEASSERTM(update_index < LEGL_MAX_VERTEXATTRIBUTES, "must not call VertexAttribute::set more often than LEGL_MAX_VERTEXATTRIBUTES times");
+        attributes[update_index].init(inName, inSize, inType);
+        update_index++;
+        return *this;
+    }
+
+    VertexAttributes& VertexAttributes::end() {
+        updateStrideOffset();
+        return *this;
     }
 }

@@ -21,6 +21,7 @@ namespace le4 {
         const GLvoid*  offset;
         GLboolean normalized;
 
+        void init();
         void init(GLchar* inName, GLint inSize, GLenum inType);
 
         size_t sizeInBytes();
@@ -29,7 +30,14 @@ namespace le4 {
     struct VertexAttributes {
         VertexAttribute attributes[LEGL_MAX_VERTEXATTRIBUTES];
 
+        VertexAttributes& begin();
+        VertexAttributes& set(GLchar* inName, GLint inSize, GLenum inType);
+        VertexAttributes& end();
+
         size_t totalSize();
+
+    private:
+        int update_index;
         void updateStrideOffset();
     };
 
