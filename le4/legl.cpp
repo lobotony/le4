@@ -199,7 +199,17 @@ namespace le4 {
         }
     }
 
-    VertexAttributes& VertexAttributes::begin() {
+    void VertexAttributes::updateLocations() {
+        for(int i=0; i<LEGL_MAX_VERTEXATTRIBUTES; ++i) {
+            locations[i] = -1;
+        }
+        for(int i=0; i<update_index; ++i) {
+            locations[i] = glGetAttribLocation(shaderProgram, attributes[i].name);GLASSERT;
+        }
+    }
+
+    VertexAttributes& VertexAttributes::begin(GLuint inShaderProgram) {
+        shaderProgram = inShaderProgram;
         // reset index and all attributes
         update_index = 0;
         for(int i=0; i<LEGL_MAX_VERTEXATTRIBUTES; ++i) {
@@ -217,6 +227,7 @@ namespace le4 {
 
     VertexAttributes& VertexAttributes::end() {
         updateStrideOffset();
+        updateLocations();
         return *this;
     }
 }

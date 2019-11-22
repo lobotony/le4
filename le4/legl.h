@@ -29,8 +29,10 @@ namespace le4 {
 
     struct VertexAttributes {
         VertexAttribute attributes[LEGL_MAX_VERTEXATTRIBUTES];
+        GLint locations[LEGL_MAX_VERTEXATTRIBUTES];
+        GLuint shaderProgram;
 
-        VertexAttributes& begin();
+        VertexAttributes& begin(GLuint inShaderProgram);
         VertexAttributes& set(const char* inName, GLint inSize, GLenum inType);
         VertexAttributes& end();
 
@@ -39,6 +41,7 @@ namespace le4 {
     private:
         int update_index;
         void updateStrideOffset();
+        void updateLocations();
     };
 
 
