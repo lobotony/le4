@@ -12,7 +12,7 @@
 
 namespace le4 {
 
-    struct leglVertexAttribute
+    struct VertexAttribute
     {
         GLchar * name; // attribute name
         GLint size; // Number of components per generic vertex attribute. Must be 1, 2, 3, or 4.
@@ -21,13 +21,13 @@ namespace le4 {
         const GLvoid*  offset;
         GLboolean normalized;
 
-        void init();
+        void init(GLchar* inName, GLint inSize, GLenum inType);
 
         size_t sizeInBytes();
     };
 
-    struct leglVertexAttributes {
-        leglVertexAttribute attributes[LEGL_MAX_VERTEXATTRIBUTES];
+    struct VertexAttributes {
+        VertexAttribute attributes[LEGL_MAX_VERTEXATTRIBUTES];
 
         size_t totalSize();
         void updateStrideOffset();

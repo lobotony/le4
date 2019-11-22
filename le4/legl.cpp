@@ -155,20 +155,20 @@ namespace le4 {
         return shaderProgram;
     }
 
-    size_t leglVertexAttribute::sizeInBytes() {
+    size_t VertexAttribute::sizeInBytes() {
         return size* leglTypeToSize(type);
     }
 
-    void leglVertexAttribute::init() {
-        name = NULL;
-        size = 0;
-        type = 0;
+    void VertexAttribute::init(GLchar* inName, GLint inSize, GLenum inType) {
+        name = inName;
+        size = inSize;
+        type = inType;
         stride = 0;
         offset = NULL;
         normalized = 0;
     }
 
-    size_t leglVertexAttributes::totalSize() {
+    size_t VertexAttributes::totalSize() {
         size_t result = 0;
         for(int i=0; i<LEGL_MAX_VERTEXATTRIBUTES; ++i) {
             result += attributes[i].sizeInBytes();
@@ -176,7 +176,7 @@ namespace le4 {
         return result;
     }
 
-    void leglVertexAttributes::updateStrideOffset() {
+    void VertexAttributes::updateStrideOffset() {
         size_t ts = totalSize();
         size_t offset = 0;
         for(int i=0; i<LEGL_MAX_VERTEXATTRIBUTES; ++i) {
