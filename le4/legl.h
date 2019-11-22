@@ -24,7 +24,7 @@ namespace le4 {
         void init();
         void init(const char* inName, GLint inSize, GLenum inType);
 
-        size_t sizeInBytes();
+        size_t sizeInBytes() const;
     };
 
     struct VertexAttributes {
@@ -36,8 +36,8 @@ namespace le4 {
         VertexAttributes& set(const char* inName, GLint inSize, GLenum inType);
         VertexAttributes& end();
 
-        size_t totalSize();
-
+        size_t totalSize() const;
+        int count() const {return update_index;};
     private:
         int update_index;
         void updateStrideOffset();

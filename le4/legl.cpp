@@ -158,7 +158,7 @@ namespace le4 {
         return shaderProgram;
     }
 
-    size_t VertexAttribute::sizeInBytes() {
+    size_t VertexAttribute::sizeInBytes() const {
         return size* leglTypeToSize(type);
     }
 
@@ -180,7 +180,7 @@ namespace le4 {
         normalized = 0;
     }
 
-    size_t VertexAttributes::totalSize() {
+    size_t VertexAttributes::totalSize() const {
         size_t result = 0;
         for(int i=0; i<LEGL_MAX_VERTEXATTRIBUTES; ++i) {
             result += attributes[i].sizeInBytes();
