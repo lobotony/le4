@@ -171,7 +171,7 @@ namespace le4 {
         normalized = 0;
     }
 
-    void VertexAttribute::init(GLchar* inName, GLint inSize, GLenum inType) {
+    void VertexAttribute::init(const char* inName, GLint inSize, GLenum inType) {
         name = inName;
         size = inSize;
         type = inType;
@@ -208,7 +208,7 @@ namespace le4 {
         return *this;
     }
 
-    VertexAttributes& VertexAttributes::set(GLchar* inName, GLint inSize, GLenum inType) {
+    VertexAttributes& VertexAttributes::set(const char* inName, GLint inSize, GLenum inType) {
         LEASSERTM(update_index < LEGL_MAX_VERTEXATTRIBUTES, "must not call VertexAttribute::set more often than LEGL_MAX_VERTEXATTRIBUTES times");
         attributes[update_index].init(inName, inSize, inType);
         update_index++;

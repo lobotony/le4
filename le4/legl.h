@@ -14,7 +14,7 @@ namespace le4 {
 
     struct VertexAttribute
     {
-        GLchar * name; // attribute name
+        const char * name; // attribute name
         GLint size; // Number of components per generic vertex attribute. Must be 1, 2, 3, or 4.
         GLenum type; // GL_BYTE, GL_UNSIGNED_BYTE, GL_SHORT, GL_UNSIGNED_SHORT, GL_INT, GL_UNSIGNED_INT, GL_FLOAT, or GL_DOUBLE
         GLsizei stride;
@@ -22,7 +22,7 @@ namespace le4 {
         GLboolean normalized;
 
         void init();
-        void init(GLchar* inName, GLint inSize, GLenum inType);
+        void init(const char* inName, GLint inSize, GLenum inType);
 
         size_t sizeInBytes();
     };
@@ -31,7 +31,7 @@ namespace le4 {
         VertexAttribute attributes[LEGL_MAX_VERTEXATTRIBUTES];
 
         VertexAttributes& begin();
-        VertexAttributes& set(GLchar* inName, GLint inSize, GLenum inType);
+        VertexAttributes& set(const char* inName, GLint inSize, GLenum inType);
         VertexAttributes& end();
 
         size_t totalSize();
