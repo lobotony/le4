@@ -29,7 +29,7 @@ namespace le4 {
 
     struct VertexAttributes {
         VertexAttribute attributes[LEGL_MAX_VERTEXATTRIBUTES];
-        GLint locations[LEGL_MAX_VERTEXATTRIBUTES];
+        GLuint locations[LEGL_MAX_VERTEXATTRIBUTES];
         GLuint shaderProgram;
 
         VertexAttributes& begin(GLuint inShaderProgram);

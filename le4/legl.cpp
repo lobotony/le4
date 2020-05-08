@@ -201,10 +201,12 @@ namespace le4 {
 
     void VertexAttributes::updateLocations() {
         for(int i=0; i<LEGL_MAX_VERTEXATTRIBUTES; ++i) {
-            locations[i] = -1;
+            locations[i] = 0;
         }
         for(int i=0; i<update_index; ++i) {
-            locations[i] = glGetAttribLocation(shaderProgram, attributes[i].name);GLASSERT;
+            GLint loc = glGetAttribLocation(shaderProgram, attributes[i].name);GLASSERT;
+            LEASSERTM(loc != -1, "couldn't find location of attribute %s", attributes[i].name);
+            locations[i] = (GLuint)loc; // safe to cast since it must be positive at this point
         }
     }
 
