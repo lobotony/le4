@@ -18,6 +18,7 @@
 		35C372B721F36A87008128BD /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C372B621F36A87008128BD /* SDL2.framework */; };
 		35C372BA21F36B61008128BD /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 35C372B921F36B61008128BD /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35D7E4222373838D00A85529 /* leApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35D7E4202373838D00A85529 /* leApp.cpp */; };
+		35DBBD182465AD0400B73422 /* thirdparty in Resources */ = {isa = PBXBuildFile; fileRef = 35DBBD172465AD0400B73422 /* thirdparty */; };
 		35FCED7A246591DE00D4ABC6 /* SokolGl3Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FCED79246591DE00D4ABC6 /* SokolGl3Renderer.cpp */; };
 /* End PBXBuildFile section */
 
@@ -45,13 +46,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2FB8D041FD3DC29A458C9D6C /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		2FB8D5A0408BE7AD68F4EB2A /* legl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = legl.h; sourceTree = "<group>"; };
 		2FB8D6D7A65E244C1ED80794 /* TestRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRenderer.h; sourceTree = "<group>"; };
 		2FB8D9499A4A460CA319BDF0 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		2FB8D990E072636BA77741B9 /* stb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_truetype.h; sourceTree = "<group>"; };
 		2FB8DBA270A22682AECE0BDE /* leApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = leApp.h; sourceTree = "<group>"; };
-		2FB8DBDA6852DEB039C76B56 /* stb_image_write.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image_write.h; sourceTree = "<group>"; };
 		356EEFB82374D54300594D2A /* le4Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = le4Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		356EEFBC2374D54300594D2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		356EEFC22374D63500594D2A /* le4Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = le4Tests.mm; sourceTree = "<group>"; };
@@ -67,6 +65,7 @@
 		35C372B621F36A87008128BD /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = thirdparty/SDL2.framework; sourceTree = "<group>"; };
 		35C372B921F36B61008128BD /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = thirdparty/SDL2.framework; sourceTree = "<group>"; };
 		35D7E4202373838D00A85529 /* leApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = leApp.cpp; sourceTree = "<group>"; };
+		35DBBD172465AD0400B73422 /* thirdparty */ = {isa = PBXFileReference; lastKnownFileType = folder; path = thirdparty; sourceTree = "<group>"; };
 		35FCED78246591DE00D4ABC6 /* SokolGl3Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SokolGl3Renderer.h; sourceTree = "<group>"; };
 		35FCED79246591DE00D4ABC6 /* SokolGl3Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SokolGl3Renderer.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,10 +103,11 @@
 			isa = PBXGroup;
 			children = (
 				35B027F521F681F400C9A7E3 /* resources */,
-				35C372B921F36B61008128BD /* SDL2.framework */,
 				3584BAAF21F369F200906C37 /* le4 */,
+				35DBBD172465AD0400B73422 /* thirdparty */,
 				356EEFB92374D54300594D2A /* le4Tests */,
 				3584BAAE21F369F200906C37 /* Products */,
+				35C372B921F36B61008128BD /* SDL2.framework */,
 				35C372B521F36A87008128BD /* Frameworks */,
 				2FB8D9499A4A460CA319BDF0 /* main.cpp */,
 			);
@@ -133,9 +133,6 @@
 				2FB8DBA270A22682AECE0BDE /* leApp.h */,
 				359A489723771397001A206C /* legl.cpp */,
 				2FB8D5A0408BE7AD68F4EB2A /* legl.h */,
-				2FB8DBDA6852DEB039C76B56 /* stb_image_write.h */,
-				2FB8D041FD3DC29A458C9D6C /* stb_image.h */,
-				2FB8D990E072636BA77741B9 /* stb_truetype.h */,
 				359A4891237712A8001A206C /* TestRenderer.cpp */,
 				2FB8D6D7A65E244C1ED80794 /* TestRenderer.h */,
 				35FCED79246591DE00D4ABC6 /* SokolGl3Renderer.cpp */,
@@ -240,6 +237,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35DBBD182465AD0400B73422 /* thirdparty in Resources */,
 				35B027F621F681F400C9A7E3 /* resources in Resources */,
 				3584BAB421F369F300906C37 /* Assets.xcassets in Resources */,
 			);
@@ -438,6 +436,7 @@
 					"\"$(SRCROOT)/thirdparty\"",
 					"$(PROJECT_DIR)/thirdparty",
 				);
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/thirdparty\"";
 				INFOPLIST_FILE = le4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -460,6 +459,7 @@
 					"\"$(SRCROOT)/thirdparty\"",
 					"$(PROJECT_DIR)/thirdparty",
 				);
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/thirdparty\"";
 				INFOPLIST_FILE = le4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
