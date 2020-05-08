@@ -14,6 +14,7 @@ void App::run(const char* windowName, u16 windowWidth, u16 windowHeight, const c
 
     // FIXME: prefsPath
 
+    // FIXME: SDL GL Setup stuff shouldn't be in App, but we'll keep it here for now for simplicities sake
     SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 3 );
     SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 3 );
     SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
