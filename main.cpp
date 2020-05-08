@@ -1,6 +1,6 @@
 #include <iostream>
 #include "leApp.h"
-#include "TestRenderer.h"
+#include "SokolGl3Renderer.h"
 
 using std::cout;
 using namespace le4;
@@ -8,7 +8,7 @@ using namespace le4;
 
 struct TestApp : App {
     Bitmap bmp;
-    TestRenderer tr;
+    SokolGl3Renderer tr;
 
     void startup() {
         bmp.init(fileLoadResource("resources/testbutton.png"));
@@ -16,6 +16,7 @@ struct TestApp : App {
     }
 
     void update() {
+
         tr.draw();
     }
 
