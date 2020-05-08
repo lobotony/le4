@@ -16,8 +16,7 @@ struct TestApp : App {
     }
 
     void update() {
-
-        tr.draw();
+        tr.draw(windowSize.x, windowSize.y);
     }
 
     void shutdown() {
