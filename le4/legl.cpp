@@ -1,6 +1,10 @@
 #include "legl.h"
 #include "le4.h"
 
+#define SOKOL_IMPL
+#define SOKOL_GLCORE33
+#include "sokol_gfx.h"
+
 namespace le4 {
 
     const char* leglErrorToString(GLenum err) {
