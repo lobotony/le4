@@ -4,6 +4,7 @@
 
 namespace le4 {
 
+    // FIXME: make App GL specific? use sokol_app?
 struct App {
     SDL_GLContext   glContext;
     SDL_Window*     window;
