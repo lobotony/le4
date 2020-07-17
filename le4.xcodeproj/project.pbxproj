@@ -12,7 +12,6 @@
 		3584BAB421F369F300906C37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3584BAB321F369F300906C37 /* Assets.xcassets */; };
 		358BA0D72465B10F005F313D /* flextGL.c in Sources */ = {isa = PBXBuildFile; fileRef = 358BA0D62465B10F005F313D /* flextGL.c */; };
 		359A48902377117D001A206C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359A488E237710FA001A206C /* OpenGL.framework */; };
-		359A4893237712A8001A206C /* TestRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 359A4891237712A8001A206C /* TestRenderer.cpp */; };
 		359A489923771397001A206C /* legl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 359A489723771397001A206C /* legl.cpp */; };
 		35B027F421F6769600C9A7E3 /* le4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35B027F321F6769600C9A7E3 /* le4.cpp */; };
 		35B027F621F681F400C9A7E3 /* resources in Resources */ = {isa = PBXBuildFile; fileRef = 35B027F521F681F400C9A7E3 /* resources */; };
@@ -47,7 +46,6 @@
 
 /* Begin PBXFileReference section */
 		2FB8D5A0408BE7AD68F4EB2A /* legl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = legl.h; sourceTree = "<group>"; };
-		2FB8D6D7A65E244C1ED80794 /* TestRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRenderer.h; sourceTree = "<group>"; };
 		2FB8D9499A4A460CA319BDF0 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2FB8DBA270A22682AECE0BDE /* leApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = leApp.h; sourceTree = "<group>"; };
 		356EEFB82374D54300594D2A /* le4Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = le4Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,7 +56,6 @@
 		3584BAB821F369F300906C37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		358BA0D62465B10F005F313D /* flextGL.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = flextGL.c; path = thirdparty/flextgl/flextGL.c; sourceTree = SOURCE_ROOT; };
 		359A488E237710FA001A206C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		359A4891237712A8001A206C /* TestRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestRenderer.cpp; sourceTree = "<group>"; };
 		359A489723771397001A206C /* legl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = legl.cpp; sourceTree = "<group>"; };
 		35B027F221F6769600C9A7E3 /* le4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = le4.h; sourceTree = "<group>"; };
 		35B027F321F6769600C9A7E3 /* le4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = le4.cpp; sourceTree = "<group>"; };
@@ -133,8 +130,6 @@
 				2FB8DBA270A22682AECE0BDE /* leApp.h */,
 				359A489723771397001A206C /* legl.cpp */,
 				2FB8D5A0408BE7AD68F4EB2A /* legl.h */,
-				359A4891237712A8001A206C /* TestRenderer.cpp */,
-				2FB8D6D7A65E244C1ED80794 /* TestRenderer.h */,
 				35FCED79246591DE00D4ABC6 /* SokolGl3Renderer.cpp */,
 				35FCED78246591DE00D4ABC6 /* SokolGl3Renderer.h */,
 			);
@@ -266,7 +261,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				35FCED7A246591DE00D4ABC6 /* SokolGl3Renderer.cpp in Sources */,
-				359A4893237712A8001A206C /* TestRenderer.cpp in Sources */,
 				35B027F421F6769600C9A7E3 /* le4.cpp in Sources */,
 				359A489923771397001A206C /* legl.cpp in Sources */,
 				358BA0D72465B10F005F313D /* flextGL.c in Sources */,
