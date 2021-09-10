@@ -15,6 +15,7 @@
 		359A489923771397001A206C /* legl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 359A489723771397001A206C /* legl.cpp */; };
 		35B027F421F6769600C9A7E3 /* le4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35B027F321F6769600C9A7E3 /* le4.cpp */; };
 		35B027F621F681F400C9A7E3 /* resources in Resources */ = {isa = PBXBuildFile; fileRef = 35B027F521F681F400C9A7E3 /* resources */; };
+		35BB45D324C2005A00713D42 /* TexQuadRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BB45D124C2005A00713D42 /* TexQuadRenderer.cpp */; };
 		35C372B721F36A87008128BD /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C372B621F36A87008128BD /* SDL2.framework */; };
 		35C372BA21F36B61008128BD /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 35C372B921F36B61008128BD /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35D7E4222373838D00A85529 /* leApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35D7E4202373838D00A85529 /* leApp.cpp */; };
@@ -60,6 +61,8 @@
 		35B027F221F6769600C9A7E3 /* le4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = le4.h; sourceTree = "<group>"; };
 		35B027F321F6769600C9A7E3 /* le4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = le4.cpp; sourceTree = "<group>"; };
 		35B027F521F681F400C9A7E3 /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = "<group>"; };
+		35BB45D124C2005A00713D42 /* TexQuadRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TexQuadRenderer.cpp; sourceTree = "<group>"; };
+		35BB45D224C2005A00713D42 /* TexQuadRenderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TexQuadRenderer.hpp; sourceTree = "<group>"; };
 		35C372B621F36A87008128BD /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = thirdparty/SDL2.framework; sourceTree = "<group>"; };
 		35C372B921F36B61008128BD /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = thirdparty/SDL2.framework; sourceTree = "<group>"; };
 		35D7E4202373838D00A85529 /* leApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = leApp.cpp; sourceTree = "<group>"; };
@@ -91,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				356EEFC22374D63500594D2A /* le4Tests.mm */,
-				356EEFBC2374D54300594D2A /* Info.plist */,
 			);
 			path = le4Tests;
 			sourceTree = "<group>";
@@ -106,6 +108,7 @@
 				3584BAAE21F369F200906C37 /* Products */,
 				35C372B921F36B61008128BD /* SDL2.framework */,
 				35C372B521F36A87008128BD /* Frameworks */,
+				356EEFBC2374D54300594D2A /* Info.plist */,
 				2FB8D9499A4A460CA319BDF0 /* main.cpp */,
 			);
 			sourceTree = "<group>";
@@ -132,6 +135,8 @@
 				2FB8D5A0408BE7AD68F4EB2A /* legl.h */,
 				35FCED79246591DE00D4ABC6 /* SokolGl3Renderer.cpp */,
 				35FCED78246591DE00D4ABC6 /* SokolGl3Renderer.h */,
+				35BB45D124C2005A00713D42 /* TexQuadRenderer.cpp */,
+				35BB45D224C2005A00713D42 /* TexQuadRenderer.hpp */,
 			);
 			path = le4;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 			files = (
 				35FCED7A246591DE00D4ABC6 /* SokolGl3Renderer.cpp in Sources */,
 				35B027F421F6769600C9A7E3 /* le4.cpp in Sources */,
+				35BB45D324C2005A00713D42 /* TexQuadRenderer.cpp in Sources */,
 				359A489923771397001A206C /* legl.cpp in Sources */,
 				358BA0D72465B10F005F313D /* flextGL.c in Sources */,
 				35D7E4222373838D00A85529 /* leApp.cpp in Sources */,
